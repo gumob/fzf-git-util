@@ -27,7 +27,7 @@ The following additional features are implemented in the [`ghq`](https://github.
 ### Download [fzf-git](https://github.com/gumob/fzf-git) to your home directory
 
 ```shell
-wget -O ~/.fzfxcodes https://raw.githubusercontent.com/gumob/fzf-git/main/fzf-git.sh
+wget -O ~/.fzfgit https://raw.githubusercontent.com/gumob/fzf-git/main/fzf-git.sh
 ```
 
 ### Using key bindings
@@ -38,7 +38,7 @@ By default, no key bindings are set. If you want to set the key binding to `Ctrl
 ```shell
 cat <<EOL >> ~/.zshrc
 export FZF_GIT_KEY_BINDING="^G"
-source ~/.fzfxcodes
+source ~/.fzfgit
 EOL
 ```
 
@@ -47,7 +47,7 @@ EOL
 ```shell
 source <(fzf --zsh)
 export FZF_GIT_KEY_BINDING='^G'
-source ~/.fzfxcodes
+source ~/.fzfgit
 ```
 
 Source run command
@@ -58,7 +58,7 @@ source ~/.zshrc
 
 ## Usage
 
-Using the shortcut key set in `FZF_GIT_KEY_BINDING`, you can execute `fzf-git`, which will display a list of `xcodes` commands.
+Using the shortcut key set in `FZF_GIT_KEY_BINDING`, you can execute `fzf-git`, which will display a list of `ghq` and `git fuzzy` commands.
 
 To run `fzf-git` without using the keyboard shortcut, enter the following command in the shell:
 
