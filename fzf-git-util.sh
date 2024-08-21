@@ -135,82 +135,6 @@ function fzf-git-util() {
   local __gh-f-envs() { BUFFER="gh f envs"; }
 
   ######################
-  ### ghq
-  ######################
-
-  local __ghq() {
-    local option_list=(
-      "$(tput bold)ghq cd:$(tput sgr0)       Search and change the directory in the shell"
-      "$(tput bold)ghq open:$(tput sgr0)     Search and open the directory in Finder"
-    )
-    local is_editor_added=false
-    if command -v cursor &> /dev/null; then
-      option_list+=("$(tput bold)ghq cursor:$(tput sgr0)   Search and open the directory in Finder and Cursor")
-      is_editor_added=true
-    fi
-    if command -v code &> /dev/null; then
-      option_list+=("$(tput bold)ghq code:$(tput sgr0)     Search and open the directory in Finder and Visual Studio Code")
-      is_editor_added=true
-    fi
-    if command -v stree &> /dev/null; then
-      option_list+=("$(tput bold)ghq stree:$(tput sgr0)    Search and open the directory in Finder and Sourcetree")
-      is_editor_added=true
-    fi
-    if $is_editor_added; then
-      option_list+=(" ")
-    fi
-    option_list+=(
-      "$(tput bold)ghq list:$(tput sgr0)     Show the list of repositories"
-      "$(tput bold)ghq get:$(tput sgr0)      Clone a new repository"
-      "$(tput bold)ghq create:$(tput sgr0)   Create a new repository"
-      "$(tput bold)ghq root:$(tput sgr0)     Show the root directory of ghq"
-    )
-    command=$(__parse_options "ghq" ${option_list[@]})
-    if [ $? -eq 1 ]; then
-        zle accept-line
-        zle -R -c
-        return 1
-    fi
-    case "$command" in
-      "ghq cd")     __ghq-cd;;
-      "ghq open")   __ghq-cd-open;;
-      "ghq cursor") __ghq-cd-cursor;;
-      "ghq code")   __ghq-cd-code;;
-      "ghq stree")  __ghq-cd-stree;;
-      "ghq list")   BUFFER="ghq list --full-path";;
-      "ghq get")    BUFFER="ghq get";;
-      "ghq create") BUFFER="ghq create";;
-      "ghq root")   BUFFER="ghq root";;
-      *)            BUFFER="echo \"Error: Unknown command '$command\"";;
-    esac
-  }
-
-  local __ghq-cd() {
-    local dir=$(ghq list --full-path | fzf --ansi --prompt="ghq cd > ")
-    [ -n "$dir" ] && BUFFER="cd \"$dir\""
-  }
-
-  local __ghq-cd-open() {
-    local dir=$(ghq list --full-path | fzf --ansi --prompt="ghq cd && open > ")
-    [ -n "$dir" ] && BUFFER="cd \"$dir\" && open \"$dir\""
-  }
-
-  local __ghq-cd-cursor() {
-    local dir=$(ghq list --full-path | fzf --ansi --prompt="ghq cd && cursor -n > ")
-    [ -n "$dir" ] && BUFFER="cd \"$dir\" && open \"$dir\" && cursor -n \"$dir\""
-  }
-
-  local __ghq-cd-code() {
-    local dir=$(ghq list --full-path | fzf --ansi --prompt="ghq cd && code -n > ")
-    [ -n "$dir" ] && BUFFER="cd \"$dir\" && open \"$dir\" && code -n \"$dir\""
-  }
-
-  local __ghq-cd-stree() {
-    local dir=$(ghq list --full-path | fzf --ansi --prompt="ghq cd && stree > ")
-    [ -n "$dir" ] && BUFFER="cd \"$dir\" && open \"$dir\" && stree \"$dir\""
-  }
-
-  ######################
   ### Entry Point
   ######################
 
@@ -230,7 +154,7 @@ function fzf-git-util() {
         return 1
     fi
     case "$command" in
-      "ghq") __ghq;;
+      "ghq") fzf-ghq;;
       "git fuzzy") __git-fuzzy;;
       # "gh f") __git-f;;
       "opencommit") fzf-opencommit;;
