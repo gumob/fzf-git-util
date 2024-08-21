@@ -1,4 +1,4 @@
-function fzf-git() {
+function fzf-git-util() {
   ######################
   ### Option Parser
   ######################
@@ -41,7 +41,7 @@ function fzf-git() {
     elif [[ "$SHELL" == *"/bin/bash" ]]; then
       command="${option_list_normal[$index-1]%%:*}"
     else
-      echo "Error: Unsupported shell. Please use bash or zsh to use fzf-git."
+      echo "Error: Unsupported shell. Please use bash or zsh to use fzf-git-util."
       return 1
     fi
     echo $command
@@ -232,8 +232,8 @@ function fzf-git() {
     case "$command" in
       "ghq") __ghq;;
       "git fuzzy") __git-fuzzy;;
-      "opencommit") fzf-opencommit;;
       # "gh f") __git-f;;
+      "opencommit") fzf-opencommit;;
       *) echo "Error: Unknown command '$command'" ;;
     esac
 
@@ -244,9 +244,9 @@ function fzf-git() {
   init
 }
 
-zle -N fzf-git
+zle -N fzf-git-util
 if [[ "$SHELL" == *"/bin/zsh" ]]; then
-  bindkey "${FZF_GIT_KEY_BINDING}" fzf-git
+  bindkey "${FZF_GIT_UTIL_KEY_BINDING}" fzf-git-util
 elif [[ "$SHELL" == *"/bin/bash" ]]; then
-  bind -x "'${FZF_GIT_KEY_BINDING}': fzf_git"
+  bind -x "'${FZF_GIT_UTIL_KEY_BINDING}': fzf-git-util"
 fi
