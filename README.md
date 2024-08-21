@@ -1,19 +1,28 @@
-# fzf-git
+# fzf-git-util
 
 ## Table of Contents
 
-- [fzf-git](#fzf-git)
+- [fzf-git-util](#fzf-git-util)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Installation](#installation)
-    - [Download fzf-git to your home directory](#download-fzf-git-to-your-home-directory)
+    - [Download fzf-git-util to your home directory](#download-fzf-git-util-to-your-home-directory)
     - [Using key bindings](#using-key-bindings)
   - [Usage](#usage)
   - [License](#license)
 
 ## Overview
 
-This is a shell plugin that allows you to execute [`ghq`](https://github.com/x-motemen/ghq) and [`git fuzzy`](https://github.com/bigH/git-fuzzy) commands using keyboard shortcuts utilizing [`junegunn/fzf`](https://github.com/junegunn/fzf), [`x-motemen/ghq`](https://github.com/x-motemen/ghq), and [`bigH/git-fuzzy`](https://github.com/bigH/git-fuzzy).
+This is a shell plugin that allows you to execute
+[`ghq`](https://github.com/x-motemen/ghq),
+[`fzf-git.sh`](https://github.com/junegunn/fzf-git.sh),
+[`git fuzzy`](https://github.com/bigH/git-fuzzy),
+and [`fzf-opencommit`](https://github.com/gumob/fzf-opencommit)
+commands using keyboard shortcuts utilizing
+[`junegunn/fzf`](https://github.com/junegunn/fzf),
+[`x-motemen/ghq`](https://github.com/x-motemen/ghq),
+[`bigH/git fuzzy`](https://github.com/bigH/git-fuzzy),
+and [`gumob/fzf-opencommit`](https://github.com/gumob/fzf-opencommit).
 
 The following additional features are implemented in the [`ghq`](https://github.com/x-motemen/ghq) command:
 
@@ -24,21 +33,21 @@ The following additional features are implemented in the [`ghq`](https://github.
 
 ## Installation
 
-### Download [fzf-git](https://github.com/gumob/fzf-git) to your home directory
+### Download [fzf-git-util](https://github.com/gumob/fzf-git-util) to your home directory
 
 ```shell
-wget -O ~/.fzfgit https://raw.githubusercontent.com/gumob/fzf-git/main/fzf-git.sh
+wget -O ~/.fzfgitutil https://raw.githubusercontent.com/gumob/fzf-git-util/main/fzf-git-util.sh
 ```
 
 ### Using key bindings
 
-Source `fzf` and `fzf-git` in your run command shell.
+Source `fzf` and `fzf-git-util` in your run command shell.
 By default, no key bindings are set. If you want to set the key binding to `Ctrl+G`, please configure it as follows:
 
 ```shell
 cat <<EOL >> ~/.zshrc
-export FZF_GIT_KEY_BINDING="^G"
-source ~/.fzfgit
+export FZF_GIT_UTIL_KEY_BINDING="^G"
+source ~/.fzfgitutil
 EOL
 ```
 
@@ -46,8 +55,8 @@ EOL
 
 ```shell
 source <(fzf --zsh)
-export FZF_GIT_KEY_BINDING='^G'
-source ~/.fzfgit
+export FZF_GIT_UTIL_KEY_BINDING='^G'
+source ~/.fzfgitutil
 ```
 
 Source run command
@@ -58,12 +67,12 @@ source ~/.zshrc
 
 ## Usage
 
-Using the shortcut key set in `FZF_GIT_KEY_BINDING`, you can execute `fzf-git`, which will display a list of `ghq` and `git fuzzy` commands.
+Using the shortcut key set in `FZF_GIT_UTIL_KEY_BINDING`, you can execute `fzf-git-util`, which will display a list of `ghq` and `git fuzzy` commands.
 
-To run `fzf-git` without using the keyboard shortcut, enter the following command in the shell:
+To run `fzf-git-util` without using the keyboard shortcut, enter the following command in the shell:
 
 ```shell
-fzf-git
+fzf-git-util
 ```
 
 ## License
