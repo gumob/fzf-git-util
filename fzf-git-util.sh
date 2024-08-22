@@ -140,9 +140,9 @@ function fzf-git-util() {
 
   local init() {
     local option_list=(
-      "$(tput bold)ghq:$(tput sgr0)         Run ghq commands."
-      "$(tput bold)git fuzzy:$(tput sgr0)   Run git fuzzy commands."
-      # "$(tput bold)gh f:$(tput sgr0)       Run gh f commands."
+      "$(tput bold)ghq:$(tput sgr0)          Run ghq commands."
+      "$(tput bold)git fuzzy:$(tput sgr0)    Run git fuzzy commands."
+      # "$(tput bold)gh f:$(tput sgr0)        Run gh f commands."
     )
     if command -v fzf-opencommit &> /dev/null; then
       option_list+=("$(tput bold)opencommit:$(tput sgr0)   Run opencommit commands.")
