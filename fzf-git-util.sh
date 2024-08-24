@@ -139,14 +139,15 @@ function fzf-git-util() {
   ######################
 
   local init() {
-    local option_list=(
+    local option_list=()
+    if command -v fzf-opencommit &> /dev/null; then
+      option_list+=("$(tput bold)opencommit:$(tput sgr0)   Run opencommit commands.")
+    fi
+    option_list+=(
       "$(tput bold)ghq:$(tput sgr0)          Run ghq commands."
       "$(tput bold)git fuzzy:$(tput sgr0)    Run git fuzzy commands."
       # "$(tput bold)gh f:$(tput sgr0)        Run gh f commands."
     )
-    if command -v fzf-opencommit &> /dev/null; then
-      option_list+=("$(tput bold)opencommit:$(tput sgr0)   Run opencommit commands.")
-    fi
     local command=$(__parse_options "git" ${option_list[@]})
     if [ $? -eq 1 ]; then
         zle accept-line
@@ -154,10 +155,10 @@ function fzf-git-util() {
         return 1
     fi
     case "$command" in
+      "opencommit") fzf-opencommit;;
       "ghq") fzf-ghq;;
       "git fuzzy") __git-fuzzy;;
       # "gh f") __git-f;;
-      "opencommit") fzf-opencommit;;
       *) echo "Error: Unknown command '$command'" ;;
     esac
 
